@@ -23,7 +23,7 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""¤¤¤¤ Ŧяәәяɘɔɥɘı ¤¤¤¤
+helpMessage ="""¤¤¤¤ Ŧяәә ¤¤¤¤
 ¤ Id︎
 ¤ Mid
 ¤ Me︎
