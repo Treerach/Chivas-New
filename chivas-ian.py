@@ -23,7 +23,7 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""¤¤¤¤ ☠i̶a̶n̶ ̶b̶o̶t̶☢» ¤¤¤¤
+helpMessage ="""¤¤¤¤ Ŧяәәяɘɔɥɘı ¤¤¤¤
 ¤ Id︎
 ¤ Mid
 ¤ Me︎
@@ -38,11 +38,11 @@ helpMessage ="""¤¤¤¤ ☠i̶a̶n̶ ̶b̶o̶t̶☢» ¤¤¤¤
 ¤ Share on/off
 ¤ Message change:「text」
 ¤ Message check
+¤ Tagall
 ¤ Confirm
 ¤ Jam on/off
 ¤ Change clientock:「name」
 ¤ Up
-¤ Yuki join
 
 ¤ Command in the groups ¤
 
@@ -76,9 +76,6 @@ helpMessage ="""¤¤¤¤ ☠i̶a̶n̶ ̶b̶o̶t̶☢» ¤¤¤¤
 ¤ Bot cancel
 ¤ Title:
 
-✞My Creator Http://line.me/ti/p/~lianekof
-
-
 """
 
 Setgroup =""" Privasi Menu V.1 (red check mark)
@@ -94,7 +91,7 @@ Bmid = kk.getProfile().mid
 
 
 Bots=[mid,Amid,Bmid]
-admin=["ubce1a713f0cd01fa3b402ebd3e72ecb1"]
+admin=["u9489706a45fcf78bea076c6b77f7067d","ucd886b532f581aa4de98af5898719392","uf0df255db02eaad40927284f5ccf5a7d"]
 wait = {
     'contact':True,
     'autoJoin':True,
@@ -102,15 +99,15 @@ wait = {
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
-    'message':"Thanks for add me,My Creator Http://line.me/ti/p/~lianekof",
+    'message':"Thanks for add me",
     "lang":"JP",
-    "comment":"Thanks for add me,My Creator Http://line.me/ti/p/~lianekof",
+    "comment":"Thanks for add me",
     "commentOn":False,
     "commentBlack":{},
     "wblack":False,
     "dblack":False,
     "clock":False,
-    "cName":"Bot by IaN",
+    "cName":" ",
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
@@ -621,7 +618,7 @@ def bot(op):
                     X.preventJoinByTicket = False
                     ki.updateGroup(X)
                     if wait["lang"] == "JP":
-                        ki.sendText(msg.to,"Done IaN")
+                        ki.sendText(msg.to,"Done")
                     else:
                         ki.sendText(msg.to,"already open")
                 else:
@@ -629,13 +626,13 @@ def bot(op):
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv2 ourl","IaN2 link on"]:
+            elif msg.text in ["Cv2 ourl","tree link on"]:
                 if msg.toType == 2:
                     X = kk.getGroup(msg.to)
                     X.preventJoinByTicket = False
                     kk.updateGroup(X)
                     if wait["lang"] == "JP":
-                        kk.sendText(msg.to,"Done IaN")
+                        kk.sendText(msg.to,"Done")
                     else:
                         kk.sendText(msg.to,"already open")
                 else:
@@ -658,13 +655,13 @@ def bot(op):
                         cl.sendText(msg.to,"Can not be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv1 curl","IaN1 link off"]:
+            elif msg.text in ["Cv1 curl","tree link off"]:
                 if msg.toType == 2:
                     X = ki.getGroup(msg.to)
                     X.preventJoinByTicket = True
                     ki.updateGroup(X)
                     if wait["lang"] == "JP":
-                        ki.sendText(msg.to,"Done IaN")
+                        ki.sendText(msg.to,"Done")
                     else:
                         ki.sendText(msg.to,"already close")
                 else:
@@ -672,7 +669,7 @@ def bot(op):
                         ki.sendText(msg.to,"Can not be used outside the group")
                     else:
                         ki.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["Cv2 curl","IaN2 link off"]:
+            elif msg.text in ["Cv2 curl","tree2 link off"]:
                 if msg.toType == 2:
                     X = kk.getGroup(msg.to)
                     X.preventJoinByTicket = True
@@ -843,14 +840,14 @@ def bot(op):
                     profile.displayName = string
                     cl.updateProfile(profile)
                     cl.sendText(msg.to,"name " + string + " done")
-            elif msg.text in ["IaN1 rename "]:
+            elif msg.text in ["tree1 rename "]:
                 string = msg.text.replace("IaN1 rename ","")
                 if len(string.decode('utf-8')) <= 20:
                     profile_B = ki.getProfile()
                     profile_B.displayName = string
                     ki.updateProfile(profile_B)
                     ki.sendText(msg.to,"name " + string + " done")
-            elif msg.text in ["IaN2 rename "]:
+            elif msg.text in ["tree2 rename "]:
                 string = msg.text.replace("IaN2 rename ","")
                 if len(string.decode('utf-8')) <= 20:
                     profile_B = kk.getProfile()
@@ -1120,7 +1117,7 @@ def bot(op):
                         cl.sendText(msg.to,"Can't be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["IaN1 gurl"]:
+            elif msg.text in ["tree1 gurl"]:
                 if msg.toType == 2:
                     x = cl.getGroup(msg.to)
                     if x.preventJoinByTicket == True:
@@ -1133,7 +1130,7 @@ def bot(op):
                         cl.sendText(msg.to,"Can't be used outside the group")
                     else:
                         cl.sendText(msg.to,"Not for use less than group")
-            elif msg.text in ["IaN2 gurl"]:
+            elif msg.text in ["tree2 gurl"]:
                 if msg.toType == 2:
                     x = cl.getGroup(msg.to)
                     if x.preventJoinByTicket == True:
@@ -1228,7 +1225,7 @@ def bot(op):
 
 #-----------------------------------------------
 
-            elif msg.text in ["IaN join"]:
+            elif msg.text in ["tree join"]:
                         G = cl.getGroup(msg.to)
                         ginfo = cl.getGroup(msg.to)
                         G.preventJoinByTicket = False
@@ -1246,7 +1243,7 @@ def bot(op):
                         G.preventJoinByTicket(G)
                         ki.updateGroup(G)
 
-            elif msg.text in ["IaN1 join"]:
+            elif msg.text in ["tree1 join"]:
                   X = cl.getGroup(msg.to)
                   X.preventJoinByTicket = False
                   cl.updateGroup(X)
@@ -1258,7 +1255,7 @@ def bot(op):
                   ki.updateGroup(G)
                   Ticket = kk.reissueGroupTicket(msg.to)
 
-            elif msg.text in ["IaN2 join"]:
+            elif msg.text in ["tree2 join"]:
                   X = cl.getGroup(msg.to)
                   X.preventJoinByTicket = False
                   cl.updateGroup(X)
@@ -1273,8 +1270,8 @@ def bot(op):
 #-----------------------------------------------
             elif msg.text in ["Creator"]:              
                 msg.contentType = 13
-                msg.contentMetadata = {'mid': 'ubce1a713f0cd01fa3b402ebd3e72ecb1'}
-                msg.contentMetadata = {'mid': 'u7ae8d9c9e7a9a38e96c882e671e4e926'}
+                msg.contentMetadata = {'mid': 'ucd886b532f581aa4de98af5898719392'}
+                msg.contentMetadata = {'mid': 'uf0df255db02eaad40927284f5ccf5a7d'}
                 cl.sendMessage(msg)
                 cl.sendText(msg.to,"My Creator")
                 random.choice(KAC).sendText(msg.to,"My Creator")
@@ -1293,14 +1290,14 @@ def bot(op):
                         kk.leaveGroup(msg.to)                        
                     except:
                         pass
-            elif msg.text in ["IaN1 bye"]:
+            elif msg.text in ["tree1 bye"]:
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
                         ki.leaveGroup(msg.to)
                     except:
                         pass
-            elif msg.text in ["IaN2 bye"]:
+            elif msg.text in ["tree2 bye"]:
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
@@ -1308,14 +1305,14 @@ def bot(op):
                         kk.leaveGroup(msg.to)
                     except:
                         pass
-            elif msg.text in ["IaN1 @bye"]:
+            elif msg.text in ["tree1 @bye"]:
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
                         ki.leaveGroup(msg.to)
                     except:
                         pass
-            elif msg.text in ["IaN2 @bye"]:
+            elif msg.text in ["tree2 @bye"]:
                 if msg.toType == 2:
                     ginfo = cl.getGroup(msg.to)
                     try:
@@ -1324,7 +1321,7 @@ def bot(op):
                         pass
            
 #------------------------------------------
-            elif msg.text in ["Mentionall"]:
+            elif msg.text in ["Tagall"]:
               if msg.from_ in admin:
                 group = cl.getGroup(msg.to)
                 nama = [contact.mid for contact in group.members]
@@ -1526,40 +1523,40 @@ def bot(op):
 
 #-----------------------------------------------
 
-            elif msg.text in ["Cv say hinata pekok"]:
-                ki.sendText(msg.to,"Hinata pekok 􀜁􀅔Har Har􏿿")
-                kk.sendText(msg.to,"Hinata pekok 􀜁􀅔Har Har􏿿")
-                kc.sendText(msg.to,"Hinata pekok 􀜁􀅔Har Har􏿿")
-            elif msg.text in ["Cv say didik pekok"]:
-                ki.sendText(msg.to,"Didik pekok 􀜁􀅔Har Har􏿿")
-                kk.sendText(msg.to,"Didik pekok 􀜁􀅔Har Har􏿿")
-                kc.sendText(msg.to,"Didik pekok 􀜁􀅔Har Har􏿿")
-            elif msg.text in ["Cv say bobo ah","Bobo dulu ah"]:
-                ki.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Har Har􏿿")
-                kk.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Har Har􏿿")
-                kc.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Har Har􏿿")
-            elif msg.text in ["Cv say chomel pekok"]:
-                ki.sendText(msg.to,"Chomel pekok 􀜁􀅔Har Har􏿿")
-                kk.sendText(msg.to,"Chomel pekok 􀜁􀅔Har Har􏿿")
-                kc.sendText(msg.to,"Chomel pekok 􀜁􀅔Har Har􏿿")
+            elif msg.text in ["Cv say hi"]:
+                ki.sendText(msg.to,"Hi tree 􀜁􀅔Ha Ha􏿿")
+                kk.sendText(msg.to,"Hi tree 􀜁􀅔Ha Ha􏿿")
+                kc.sendText(msg.to,"Hi tree 􀜁􀅔Ha Ha􏿿")
+            elif msg.text in ["Cv say tree"]:
+                ki.sendText(msg.to,"tree pekok 􀜁􀅔Ha Ha􏿿")
+                kk.sendText(msg.to,"tree pekok 􀜁􀅔Ha Ha􏿿")
+                kc.sendText(msg.to,"tree pekok 􀜁􀅔HaHa􏿿")
+            elif msg.text in ["Cv say bot","nice"]:
+                ki.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Ha Ha􏿿")
+                kk.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Ha Ha􏿿")
+                kc.sendText(msg.to,"Have a nice dream Cv 􀜁􀅔Ha Ha􏿿")
+            elif msg.text in ["Cv say papa"]:
+                ki.sendText(msg.to,"papa pekok 􀜁􀅔Ha Ha􏿿")
+                kk.sendText(msg.to,"papa pekok 􀜁􀅔Ha Ha􏿿")
+                kc.sendText(msg.to,"papa pekok 􀜁􀅔Ha Ha􏿿")
             elif msg.text in ["#welcome"]:
-                ki.sendText(msg.to,"Selamat datang di Chivas Family Room")
-                kk.sendText(msg.to,"Jangan nakal ok!")
+                ki.sendText(msg.to,"welcome to tree Family Room")
+                kk.sendText(msg.to,"welcome to tree Family Room!")
 #-----------------------------------------------
             elif msg.text in ["PING","Ping","ping"]:
-                ki.sendText(msg.to,"PONG 􀨁􀄻double thumbs up􏿿􀜁􀅔Har Har􏿿")
-                kk.sendText(msg.to,"PONG 􀨁􀄻double thumbs up􏿿􀜁􀅔Har Har􏿿")
-                kc.sendText(msg.to,"PONG 􀨁􀄻double thumbs up􏿿􀜁􀅔Har Har􏿿")
+                ki.sendText(msg.to,"PING 􀨁􀄻double thumbs up􏿿􀜁􀅔Ha Ha􏿿")
+                kk.sendText(msg.to,"PING 􀨁􀄻double thumbs up􏿿􀜁􀅔Ha Ha􏿿")
+                kc.sendText(msg.to,"PING 􀨁􀄻double thumbs up􏿿􀜁􀅔Ha Ha􏿿")
 #-----------------------------------------------
             elif msg.text in ["Respon","respon"]:
-                ki.sendText(msg.to,"IaNv1 hadir")
-                kk.sendText(msg.to,"IaNv2 hadir")
-                kc.sendText(msg.to,"IaNv3 hadir")
+                ki.sendText(msg.to,"tree1")
+                kk.sendText(msg.to,"tree2")
+                kc.sendText(msg.to,"tree3")
 #-----------------------------------------------
 
             elif msg.text in ["Sp","Speed","speed"]:
                 start = time.time()
-                cl.sendText(msg.to, "siap tunggu...")
+                cl.sendText(msg.to, "wait speed...")
                 elapsed_time = time.time() - start
                 cl.sendText(msg.to, "%sseconds" % (elapsed_time))
                 ki.sendText(msg.to, "%sseconds" % (elapsed_time))
