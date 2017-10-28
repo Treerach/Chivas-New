@@ -13,7 +13,7 @@ print u"login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 i = 0
-c_text = """this is autolike """
+c_text = """autolike """
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
