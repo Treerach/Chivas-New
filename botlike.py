@@ -8,9 +8,12 @@ import time,random,sys,json,codecs,threading,glob,re,base64
 cl = LINETCR.LINE()
 cl.login(qr=True)
 cl.loginResult()
-
-ki = kk = kc = cl 
-
+ks = ki = kk = kc = cl 
+print u"login success"
+reload(sys)
+sys.setdefaultencoding('utf-8')
+i = 0
+c_text = """this is autolike """
 print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -21,7 +24,7 @@ Bmid = kk.getProfile().mid
 Cmid = kc.getProfile().mid
 
 Bots=[mid,Amid,Bmid,Cmid]
-admin=[""]
+admin=[""u9489706a45fcf78bea076c6b77f7067d","ucd886b532f581aa4de98af5898719392""]
 wait = {
     'contact':True,
     'autoJoin':True,
@@ -64,10 +67,20 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
         messageReq[to] = -1
     messageReq[to] += 1
 
-#---------------------------[AutoLike-nya]---------------------------#
-farzain = "I1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KZGVmIGF1dG9saWtlKCk6I1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KICAgICBmb3IgenggaW4gcmFuZ2UoMCwxMDApOiNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCiAgICAgICAgaGFzaWwgPSBjbC5hY3Rpdml0eShsaW1pdD0xMDApI1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KICAgICAgICBpZiBoYXNpbFsncmVzdWx0J11bJ3Bvc3RzJ11benhdWydwb3N0SW5mbyddWydsaWtlZCddID09IEZhbHNlOiNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCiAgICAgICAgICB0cnk6ICAgICNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCiAgICAgICAgICAgIGNsLmxpa2UoaGFzaWxbJ3Jlc3VsdCddWydwb3N0cyddW3p4XVsndXNlckluZm8nXVsnbWlkJ10saGFzaWxbJ3Jlc3VsdCddWydwb3N0cyddW3p4XVsncG9zdEluZm8nXVsncG9zdElkJ10sbGlrZVR5cGU9MTAwMikjVG9sb25nIEtlcmphc2FtYS1ueWEgdW50dWsgdGlkYWsgbWVydWJhaCBrb21lbiBzZWNhcmEga2VzZWx1cnVoYW4gdGVydXRhbWEgcGFkYSBVUkwgQ2hhbm5lbCBZb3V0dWJlIFNheWEsIGthbGF1IG1hdSBkaXRhbWJhaCBkaWtpdCBzaWxhaGthbgogICAgICAgICAgICBjbC5jb21tZW50KGhhc2lsWydyZXN1bHQnXVsncG9zdHMnXVt6eF1bJ3VzZXJJbmZvJ11bJ21pZCddLGhhc2lsWydyZXN1bHQnXVsncG9zdHMnXVt6eF1bJ3Bvc3RJbmZvJ11bJ3Bvc3RJZCddLCJBdXRvbGlrZSBCeSBGYXJ6YWluIC0gekZ6XG5cblN1YnNjcmliZSBDaGFubmVsIFNheWEgeWFrIGthbGF1IG1hdSBiaXNhIGtheWFrIGdpbmlcbmh0dHBzOi8veW91dHViZS5jb20vYy96Zno0OCIpI1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KICAgICAgICAgICAgcHJpbnQgIkxpa2UiI1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KICAgICAgICAgIGV4Y2VwdDojVG9sb25nIEtlcmphc2FtYS1ueWEgdW50dWsgdGlkYWsgbWVydWJhaCBrb21lbiBzZWNhcmEga2VzZWx1cnVoYW4gdGVydXRhbWEgcGFkYSBVUkwgQ2hhbm5lbCBZb3V0dWJlIFNheWEsIGthbGF1IG1hdSBkaXRhbWJhaCBkaWtpdCBzaWxhaGthbgogICAgICAgICAgICBwYXNzI1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KICAgICAgICBlbHNlOiNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCiAgICAgICAgICAgIHByaW50ICJBbHJlYWR5IExpa2VkIiNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCiAgICAgdGltZS5zbGVlcCg1MDApI1RvbG9uZyBLZXJqYXNhbWEtbnlhIHVudHVrIHRpZGFrIG1lcnViYWgga29tZW4gc2VjYXJhIGtlc2VsdXJ1aGFuIHRlcnV0YW1hIHBhZGEgVVJMIENoYW5uZWwgWW91dHViZSBTYXlhLCBrYWxhdSBtYXUgZGl0YW1iYWggZGlraXQgc2lsYWhrYW4KdGhyZWFkMiA9IHRocmVhZGluZy5UaHJlYWQodGFyZ2V0PWF1dG9saWtlKSNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCnRocmVhZDIuZGFlbW9uID0gVHJ1ZSNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCnRocmVhZDIuc3RhcnQoKSNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2FuCiNUb2xvbmcgS2VyamFzYW1hLW55YSB1bnR1ayB0aWRhayBtZXJ1YmFoIGtvbWVuIHNlY2FyYSBrZXNlbHVydWhhbiB0ZXJ1dGFtYSBwYWRhIFVSTCBDaGFubmVsIFlvdXR1YmUgU2F5YSwga2FsYXUgbWF1IGRpdGFtYmFoIGRpa2l0IHNpbGFoa2Fu"
-exec(base64.b64decode(farzain))
-#---------------------------[AutoLike-nya]---------------------------#
+#---------------------------[AutoLike]---------------------------#
+ elif "Like:on" == msg.text:
+				if wait["posts"] == True:
+					for posts in cl.activity(1)["result"]["posts"]:
+							cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1002)
+							cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],c_text)
+							print u"liked" + str(i)
+							i += 1
+							cl.sendText(msg.to,"like on")
+            elif "Like:off" == msg.text:
+				for posts in cl.activity(1)["result"]["posts"]:
+					if wait["posts"] == False:
+cl.sendText(msg.to,"like off")
+#---------------------------[AutoLike]---------------------------#
 
 def NOTIFIED_READ_MESSAGE(op):
     try:
@@ -83,7 +96,7 @@ def NOTIFIED_READ_MESSAGE(op):
     except:
         pass
 
-#-------------------------[Jangan Dihapus]------------------------#
+#---------------------------------------------------------------#
 
 def bot(op):
     try:
@@ -141,14 +154,15 @@ def bot(op):
                         cl.updateGroup(X)
                         Ti = cl.reissueGroupTicket(op.param1)
 
-#----------------------[Masukin Semua SC Yang Ente Pengen Disini]----------------------#
+#---------------------------------------------------------------#
+
         if op.type == 25:
             msg = op.message
             if msg.text in ["Speed","speed"]:
                     start = time.time()
                     elapsed_time = time.time() - start
                     cl.sendText(msg.to, "%sseconds" % (elapsed_time))
-#----------------------[Masukin Semua SC Yang Ente Pengen Disini]----------------------#
+#---------------------------------------------------------------#
 
         if op.type == 59:
             print op
@@ -177,4 +191,5 @@ while True:
             cl.Poll.rev = max(cl.Poll.rev, Op.revision)
             bot(Op)
             
-#-------------------------[Jangan Dihapus]------------------------#            
+#---------------------------------------------------------------#
+          
