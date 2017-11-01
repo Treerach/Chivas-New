@@ -104,8 +104,8 @@ mid = cl.getProfile().mid
 Amid = ki.getProfile().mid
 kimid = kk.getProfile().mid
 ki2mid = ks.getProfile().mid
-Bots = [mid,Amid,kimid,ki2mid]
-admin = ["u9489706a45fcf78bea076c6b77f7067d","ucd886b532f581aa4de98af5898719392"]
+Bots = ["ucd886b532f581aa4de98af5898719392"]
+admin = ["u9489706a45fcf78bea076c6b77f7067d"]
 me = cl.getProfile().mid
 bot1 = cl.getProfile().mid
 main = cl.getProfile().mid
@@ -118,15 +118,15 @@ autocancel = {}
 autoinvite = []
 autoleaveroom = []
 
-#admins = ["u9489706a45fcf78bea076c6b77f7067d"]
-#Rx3 = ["u1be68271e244853d7f59ac795bc0af99"]
-#Rx2 = ["uac09b334047623bd3b38a544e55401ed"]
-#Rx1 = ["ucd886b532f581aa4de98af5898719392"]
-#Administrator = admins + Rx3 + Rx2 + Rx1
-#AS = Rx2 + Rx1 + Rx3
-#adminsA = admins + Rx3
+admins = ["u9489706a45fcf78bea076c6b77f7067d"]
+Rx3 = ["u1be68271e244853d7f59ac795bc0af99"]
+Rx2 = ["uac09b334047623bd3b38a544e55401ed"]
+Rx1 = ["ucd886b532f581aa4de98af5898719392"]
+Administrator = admins + Rx3 + Rx2 + Rx1
+AS = Rx2 + Rx1 + Rx3
+adminsA = admins + Rx3
 
-#omikuzi = ["大吉","中吉","小吉","末吉","大凶","凶"]
+omikuzi = ["大吉","中吉","小吉","末吉","大凶","凶"]
 
 wait = {
     'contact':False,
