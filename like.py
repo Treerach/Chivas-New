@@ -31,7 +31,7 @@ wait = {
     'autoAdd':True,
     'message':" ",
     "lang":"JP",
-    "comment":"like",
+    "comment":"Auto Like",
     "commentOn":True,
     "likeOn":True,
     "commentBlack":{},
@@ -47,6 +47,7 @@ wait = {
     "inviteprotect":False,
     "linkprotect":False,
 }
+
 
 wait2 = {
     'readPoint':{},
@@ -77,12 +78,14 @@ def autolike():
              if posts["postInfo"]["liked"] is False:
                 if wait["likeOn"] == True:
                    cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+                   ki.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
                    print "Like"
                    if wait["commentOn"] == True:
                       if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
                          pass
                       else:
                           cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+                          ki.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
         except:
             count += 1
             if(count == 50):
@@ -92,8 +95,36 @@ def autolike():
 thread2 = threading.Thread(target=autolike)
 thread2.daemon = True
 thread2.start()
-
 #------------------------------------------------------------------------------------------
+
+if op.type == 17:
+            if op.param2 in Bots:
+                return
+            kk.sendText(op.param1, "Welcome\n(*´･ω･*)")
+            print "WELCOME JOIN THE GROUP"
+
+#-------------------------------------------------------------			
+		if msg.text == "Speed":
+                    start = time.time()
+                    sendMessage(msg.to, "Testing...")
+                    elapsed_time = time.time() - start
+                    sendMessage(msg.to, "%sseconds" % (elapsed_time))
+                    sendMessage(msg.to,"Bot By")
+#-------------------------------------------------------------
+                if msg.text == "Tag all":
+		      group = client.getGroup(msg.to)
+		      mem = [contact.mid for contact in group.members]
+		      for mm in mem:
+		       xname = client.getContact(mm).displayName
+		       xlen = str(len(xname)+1)
+		       msg.contentType = 0
+                       msg.text = "@"+xname+" "
+		       msg.contentMetadata ={'MENTION':'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(mm)+'}]}','EMTVER':'4'}
+		       try:
+                         client.sendMessage(msg)
+		       except Exception as error:
+                   	 print error
+#-------------------------------------------------------------
 def NOTIFIED_READ_MESSAGE(op):
     try:
         if op.param1 in wait2['readPoint']:
@@ -194,16 +225,33 @@ def bot(op):
                             u = "close"
                         else:
                             u = "open"
-                        cl.sendText(msg.to,"[Nama Grup]\n" + str(ginfo.name) + "\n[Group ID]\n" + msg.to + "\n[Pembuat Group]\n" + gCreator + "\n[Status Profil]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\nJumlah Member : " + str(len(ginfo.members)) + "Member\nMember Pending : " + sinvitee + "Member\nQR Link :" + u + " ")
+                        cl.sendText(msg.to,"[Group Name]\n" + str(ginfo.name) + "\n[Group ID]\n" + msg.to + "\n[Group Maker]\n" + gCreator + "\n[Status Profil]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\nNumber of Members : " + str(len(ginfo.members)) + "Member\nMember Pending : " + sinvitee + "Member\nQR Link :" + u + " ")
                     else:
-                        cl.sendText(msg.to,"[Nama Grup]\n" + str(ginfo.name) + "\n[Group ID]\n" + msg.to + "\n[Pembuat Group]\n" + gCreator + "\n[Status Profil]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus)
+                        cl.sendText(msg.to,"[Group Name]\n" + str(ginfo.name) + "\n[Group ID]\n" + msg.to + "\n[Group Maker]\n" + gCreator + "\n[Status Profil]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus)
                 else:
                     if wait["lang"] == "JP":
-                        cl.sendText(msg.to,"Tidak Bisa Digunakan Diluar Grup")
+                        cl.sendText(msg.to,"Can not Be Used Outside of Group")
                     else:
-                        cl.sendText(msg.to,"Tidak Bisa Digunakan Diluar Grup")
+                        cl.sendText(msg.to,"Can not Be Used Outside of Group")
 #----------------------------[Check Grup Info]----------------------------#WORK
-           
+
+#----------------------------[Buka Link QR]----------------------------#WORK
+            if msg.text in ["Ourl"]:
+                if msg.toType == 2:
+                    X = cl.getGroup(msg.to)
+                    X.preventJoinByTicket = False
+                    cl.updateGroup(X)
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"It worked")
+                    else:
+                        cl.sendText(msg.to,"Has opened")
+                else:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"Can not Be Used Outside of Group")
+                    else:
+                        cl.sendText(msg.to,"Can not Be Used Outside of Group")
+#----------------------------[Buka Link QR]----------------------------#WORK
+            
 #----------------------------[Check SPEED]----------------------------#WORK
             if msg.text in ["Speed","speed"]:
                     start = time.time()
@@ -234,6 +282,137 @@ def bot(op):
 			    except Exception as error:
 			        print error
 #----------------------------[TAG ALL]----------------------------#WORK
+
+#----------------------------[Spam]----------------------------#WORK
+            if "Spam: " in msg.text:
+                cond = msg.text.split(" ")
+                value = int(cond[2])
+                text = msg.text.replace("Spam: " + str(cond[1]) + " " + str(value) + " ","")
+                ballon1 = value * (text + "\n")
+                if cond[1] == "on":
+                    if value <= 150:
+                        for x in range(value):
+                            cl.sendText(msg.to, text)
+                    else:
+                        cl.sendText(msg.to,"The amount of spamming exceeds the limit")
+                elif cond[1] == "off":
+                    if value <= 200:
+                        cl.sendText(msg.to,ballon1)
+                    else:
+                        cl.sendText(msg.to,"The amount of spamming exceeds the limit")
+                else:
+                    cl.sendText(msg.to,"Error condition")
+#----------------------------[Spam]----------------------------#WORK 
+
+#----------------------------[Spam To Contact]----------------------------#WORK 
+            elif "Spamcontact @" in msg.text:
+                _name = msg.text.replace("Spamcontact @","")
+                _nametarget = _name.rstrip(' ')
+                gs = cl.getGroup(msg.to)
+                for g in gs.members:
+                    if _nametarget == g.displayName:
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam") 
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(g.mid,"Spam")
+                       cl.sendText(msg.to, "Done")
+                       print " Spammed !"
+#----------------------------[Spam To Contact]----------------------------#WORK 
+
+#----------------------------[Kick By Multi Tag]----------------------------#WORK 
+            if ("Bye " in msg.text):
+                key = eval(msg.contentMetadata["MENTION"])
+                key["MENTIONEES"][0]["M"]
+                targets = []
+                for x in key["MENTIONEES"]:
+                    targets.append(x["M"])
+                for target in targets:
+                   try:
+                      cl.kickoutFromGroup(msg.to,[target])
+                   except:
+                      pass
+#----------------------------[Kick By Multi Tag]----------------------------#WORK                  
+
+#----------------------------[Invite Group Creator]----------------------------#WORK
+            elif msg.text in ["Creative:inv"]:
+              if msg.toType == 2:
+                 ginfo = cl.getGroup(msg.to)
+                 gCreator = ginfo.creator.mid
+                 try:
+                    cl.findAndAddContactsByMid(gCreator)
+                    cl.inviteIntoGroup(msg.to,[gCreator])
+                    print "Successfully Invite Group Creator"
+                 except:
+                    pass
+#----------------------------[Invite Group Creator]----------------------------#WORK
+
+#----------------------------[Group BroadCast]----------------------------#WORK
+            if "Gbc " in msg.text:
+                print "Successfully BC to All Groups"
+                bctxt = msg.text.replace("Gbc ","")
+                n = cl.getGroupIdsJoined()
+                for people in n:
+                    cl.sendText(people, (bctxt))
+#----------------------------[Group BroadCast]----------------------------#WORK  
+
+#----------------------------[Kick All Member]----------------------------#WORK  
+                if msg.text == "Kick all":
+                    print "ok"
+                    _name = msg.text.replace("Kick all","")
+                    gs = cl.getGroup(msg.to)
+                    sendMessage(msg.to,"Kick By Ŧяәәƅoŧ\I am not responsible if your group is flat because of this bot, please ask yourself this account\nThank you")
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        sendMessage(msg.to,"error")
+                    else:
+                        for target in targets:
+                            try:
+                                klist=[cl]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                cl.sendText(msg.to,"error")
+#----------------------------[Kick All Member]----------------------------#WORK  
+
+#----------------------------[Friend BroadCast]----------------------------#WORK 
+                if "Fbc " in msg.text:
+                    print "BroadCast To All Friends Succeeded"
+                    bctxt = msg.text.replace("Fbc ","")
+                    n = cl.getAllContactIds()
+                    for people in n:
+                        cl.sendText(people, (bctxt))
+#----------------------------[Friend BroadCast]----------------------------#WORK
 
         if op.type == 59:
             print op
