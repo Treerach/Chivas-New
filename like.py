@@ -42,7 +42,7 @@ wait = {
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
-    "protect":True,
+    "protect":False,
     "cancelprotect":False,
     "inviteprotect":False,
     "linkprotect":False,
@@ -77,14 +77,12 @@ def autolike():
              if posts["postInfo"]["liked"] is False:
                 if wait["likeOn"] == True:
                    cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
-                   ki.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
                    print "Like"
                    if wait["commentOn"] == True:
                       if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
                          pass
                       else:
                           cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
-                          ki.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
         except:
             count += 1
             if(count == 50):
