@@ -193,6 +193,9 @@ class LINE:
 
   """Group"""
 
+  def findGroupByTicket(self, ticketId):
+        return self.Talk.client.findGroupByTicket(ticketId)
+
   def acceptGroupInvitation(self, groupId):
         return self.Talk.client.acceptGroupInvitation(0, groupId)
 
@@ -308,7 +311,7 @@ class LINE:
 
       prof = self.getProfile()
 
-      print("Ŧяәәƅoŧ")
+      print("Tree Bot")
       print("mid -> " + prof.mid)
       print("name -> " + prof.displayName)
       print("authToken -> " + self.authToken)
